@@ -8,9 +8,9 @@ import (
 )
 
 type Customer struct {
-	Name    string `json:"full_name"`
-	City    string `json:"city"`
-	ZipCode string `json:"zip_code"`
+	Name    string `json:"full_name" xml:"name"`
+	City    string `json:"city" xml:"city"`
+	ZipCode string `json:"zip_code" xml:"zipcode"`
 }
 
 func main() {
@@ -34,6 +34,13 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 		{Name: "Tono", City: "Magelang", ZipCode: "451451"},
 	}
 	//addheader
+
+	//json
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode((customers))
+
+	//XML
+	// w.Header().Add("Content-Type", "application/xml")
+	// xml.NewEncoder(w).Encode((customers))
+
 }
